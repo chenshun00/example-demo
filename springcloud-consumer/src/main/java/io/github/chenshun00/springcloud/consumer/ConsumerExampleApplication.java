@@ -1,4 +1,4 @@
-package io.chenshun00.springcloud.consumer;
+package io.github.chenshun00.springcloud.consumer;
 
 import io.github.chenshun00.springcloud.api.HelloController;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"io.github.chenshun00.springcloud"})
+@EnableFeignClients(basePackages = {"io.github.chenshun00.springcloud.api"})
 public class ConsumerExampleApplication {
 
     public static void main(String[] args) {

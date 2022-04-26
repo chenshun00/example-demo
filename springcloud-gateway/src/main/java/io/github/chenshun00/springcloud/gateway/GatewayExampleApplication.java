@@ -1,4 +1,4 @@
-package io.chenshun00.springcloud.gateway;
+package io.github.chenshun00.springcloud.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package io.chenshun00.springcloud.consumer;
+package io.github.chenshun00.springcloud.consumer;
 
 import io.github.chenshun00.springcloud.api.HelloController;
 import org.springframework.beans.factory.annotation.Value;
