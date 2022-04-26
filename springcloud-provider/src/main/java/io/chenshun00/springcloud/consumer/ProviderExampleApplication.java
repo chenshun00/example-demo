@@ -1,5 +1,6 @@
 package io.chenshun00.springcloud.consumer;
 
+import io.github.chenshun00.springcloud.api.HelloController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableDiscoveryClient
 @RefreshScope
-public class ProviderExampleApplication {
+public class ProviderExampleApplication implements HelloController {
     public static void main(String[] args) {
         SpringApplication.run(ProviderExampleApplication.class, args);
     }
@@ -36,5 +37,10 @@ public class ProviderExampleApplication {
     public String echo(@PathVariable String name) {
         System.out.println("hello==>" + name);
         return "echo name = " + name;
+    }
+
+    @Override
+    public String greeting() {
+        return "hello " + "\t" + System.currentTimeMillis();
     }
 }
