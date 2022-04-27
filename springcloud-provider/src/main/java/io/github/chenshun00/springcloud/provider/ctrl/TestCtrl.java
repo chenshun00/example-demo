@@ -1,4 +1,4 @@
-package io.github.chenshun00.springcloud.consumer.ctrl;
+package io.github.chenshun00.springcloud.provider.ctrl;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

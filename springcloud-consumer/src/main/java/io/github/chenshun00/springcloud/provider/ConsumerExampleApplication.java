@@ -1,5 +1,6 @@
-package io.github.chenshun00.springcloud.consumer;
+package io.github.chenshun00.springcloud.provider;
 
+import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author chenshun00@gmail.com
@@ -42,8 +44,8 @@ public class ConsumerExampleApplication {
         private String appName;
 
         @GetMapping("feign")
-        public String feign() {
-            return helloController.greeting();
+        public List<Book> feign() {
+            return helloController.getBookByAuthor("cc");
         }
 
         @GetMapping("/")

@@ -19,6 +19,15 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.chenshun00.springcloud</groupId>
             <artifactId>springcloud-common-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>

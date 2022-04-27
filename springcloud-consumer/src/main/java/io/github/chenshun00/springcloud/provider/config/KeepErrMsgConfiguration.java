@@ -1,4 +1,4 @@
-package io.github.chenshun00.springcloud.consumer.config;
+package io.github.chenshun00.springcloud.provider.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
