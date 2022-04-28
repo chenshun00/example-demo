@@ -42,8 +42,8 @@ cd datasource-starter && mvn install
 ```shell
 # browser->consul-provider->db
 curl 'http://127.0.0.1:8082/book?author=cc'
-# browser->consul-consumer->consul-provider->db
-curl 'http://127.0.0.1:8082/book?author=cc'
+# browser->consul-consumer(feign)->consul-provider->db
+curl 'http://127.0.0.1:9082/feign'
 ```
 
 ### some problem for newbe
@@ -63,3 +63,4 @@ curl 'http://127.0.0.1:8082/book?author=cc'
 * https://www.cnblogs.com/wuzhenzhao/p/12835997.html
 * https://segmentfault.com/a/1190000019284355
 * https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html#_consumer_%E5%BA%94%E7%94%A8
+* https://www.skypyb.com/2021/06/jishu/1836/

@@ -3,6 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/logs/
+springcloud-consumer/logs
+springcloud-provider/logs
 
 ### STS ###
 .apt_generated
