@@ -59,6 +59,9 @@ curl 'http://127.0.0.1:9082/feign'
 * how to simplify development. what component is need 100%.
 * etc.
 
+### document
+* [feign](!https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-matrixvariable-support)
+
 ### reference
 * https://www.cnblogs.com/wuzhenzhao/p/12835997.html
 * https://segmentfault.com/a/1190000019284355
