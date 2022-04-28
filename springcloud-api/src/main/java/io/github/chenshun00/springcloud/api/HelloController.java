@@ -1,0 +1,21 @@
+package io.github.chenshun00.springcloud.api;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+/**
+ * @author chenshun00@gmail.com
+ * @since 2022/4/26 9:28 PM
+ */
+@FeignClient("consul-provider")
+public interface HelloController {
+
+    @GetMapping("/greeting")
+    String greeting();
+
+    @GetMapping("book")
+    List<Book> getBookByAuthor(@RequestParam("author") String author);
+}

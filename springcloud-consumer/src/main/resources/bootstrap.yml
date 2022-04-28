@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    consul:
+      enabled: true
+      host: localhost
+      port: 8500
+      discovery:
+        health-check-path: /   #定义 consul 健康检查路径
+        health-check-interval: 3s # consul 健康检查频率
+      config:
+        prefixes: config
+        default-context: chenshun
+        data-key: data
+        format: yaml
+        profile-separator: ","
+  application:
+    name: consul-consumer
