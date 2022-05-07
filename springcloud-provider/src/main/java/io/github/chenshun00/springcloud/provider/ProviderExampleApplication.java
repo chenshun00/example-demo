@@ -1,7 +1,9 @@
 package io.github.chenshun00.springcloud.provider;
 
+import com.alibaba.fastjson.JSONObject;
 import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
+import io.github.chenshun00.springcloud.dto.User;
 import io.github.chenshun00.springcloud.provider.mapper.BookMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,6 +59,13 @@ public class ProviderExampleApplication implements HelloController {
     public List<Book> getBookByAuthor(String author) {
         return bookMapper.getBookByAuthor(author);
     }
+
+    @Override
+    public String user(User user) {
+        System.out.println("AAA:==>" + JSONObject.toJSONString(user));
+        return "right";
+    }
+
 
     @Resource
     private BookMapper bookMapper;

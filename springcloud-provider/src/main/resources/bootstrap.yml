@@ -1,16 +1,24 @@
 spring:
-  cloud:
-    consul:
-      enabled: true
-      host: localhost
-      port: 8500
-      discovery:
-        health-check-interval: 10s # consul 健康检查频率
-      config:
-        prefixes: config
-        default-context: chenshun
-        data-key: data
-        format: yaml
-        profile-separator: ","
+#  profiles:
+#    active: prod
   application:
-    name: consul-provider
+    name: nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.251.2:8848
+        username: nacos
+        password: nacos
+        namespace: test
+        heart-beat-interval: 10000
+        heart-beat-timeout: 11000
+        ip-delete-timeout: 11000
+        group: Base
+      config:
+        server-addr: 192.168.251.2:8848
+        file-extension: yaml
+        namespace: test
+        username: nacos
+        password: nacos
+        group: Base

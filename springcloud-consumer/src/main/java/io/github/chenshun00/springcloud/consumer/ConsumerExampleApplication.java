@@ -1,4 +1,4 @@
-package io.github.chenshun00.springcloud.provider;
+package io.github.chenshun00.springcloud.consumer;
 
 import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,20 +29,18 @@ public class ConsumerExampleApplication {
 
 
     @RestController
+    @RefreshScope
     public static class ConsulController {
+
+        @Value("${first.second}")
+        private String second;
 
         @Resource
         private HelloController helloController;
-        @Resource
-        private LoadBalancerClient loadBalancerClient;
-        @Resource
-        private RestTemplate restTemplate;
-
-        @Value("${spring.application.name}")
-        private String appName;
 
         @GetMapping("feign")
         public List<Book> feign() {
+            System.out.println("second:" + second);
             return helloController.getBookByAuthor("cc");
         }
 
@@ -52,11 +48,5 @@ public class ConsumerExampleApplication {
         public String ok() {
             return "ok";
         }
-    }
-
-    //实例化 RestTemplate 实例
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 }
