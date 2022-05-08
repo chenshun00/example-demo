@@ -2,6 +2,8 @@ package io.github.chenshun00.springcloud.provider;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
 import io.github.chenshun00.springcloud.dto.User;
@@ -74,7 +76,10 @@ public class ProviderExampleApplication implements HelloController {
 
     @Override
     public List<Book> getBookByAuthor(String author) {
-        return bookMapper.selectList(new QueryWrapper<Book>().eq("author", author));
+        final Page<Book> objectPage = new Page<>(2, 1, false);
+        final Page<Book> books = bookMapper.selectPage(objectPage, new QueryWrapper<Book>().eq("author", author));
+        System.out.println(JSONObject.toJSONString(books));
+        return books.getRecords();
     }
 
     @Override

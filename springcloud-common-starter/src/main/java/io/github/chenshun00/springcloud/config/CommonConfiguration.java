@@ -1,5 +1,8 @@
 package io.github.chenshun00.springcloud.config;
 
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import feign.RequestInterceptor;
 import io.github.chenshun00.springcloud.common.FeignRequestInterceptor;
 import io.github.chenshun00.springcloud.common.GlobalExceptionHandler;
@@ -22,5 +25,13 @@ public class CommonConfiguration {
     @ConditionalOnClass(RequestInterceptor.class)
     public FeignRequestInterceptor feignRequestInterceptor() {
         return new FeignRequestInterceptor();
+    }
+
+    @Bean
+    @ConditionalOnClass(PaginationInnerInterceptor.class)
+    public MybatisPlusInterceptor paginationInnerInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
     }
 }
