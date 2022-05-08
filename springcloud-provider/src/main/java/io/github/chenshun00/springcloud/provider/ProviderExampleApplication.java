@@ -1,6 +1,7 @@
 package io.github.chenshun00.springcloud.provider;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
 import io.github.chenshun00.springcloud.dto.User;
@@ -9,25 +10,29 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
  * @author chenshun00@gmail.com
  * @since 2022/4/26 11:13 AM
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @RestController
 @EnableDiscoveryClient
 @RefreshScope
-@MapperScan(basePackages = {"io.github.chenshun00.springcloud.provider"})
+@MapperScan({"io.github.chenshun00.springcloud.provider.mapper"})
 @ServletComponentScan("io.github.chenshun00.springcloud.provider")
 public class ProviderExampleApplication implements HelloController {
     public static void main(String[] args) {
@@ -50,6 +55,18 @@ public class ProviderExampleApplication implements HelloController {
         return "echo name = " + name;
     }
 
+    @Resource
+    private ApplicationContext applicationContext;
+
+    @GetMapping("dd")
+    public void dd() {
+        final String[] beanNamesForType = applicationContext.getBeanNamesForType(DataSource.class);
+        System.out.println("===开始输出");
+        for (String s : beanNamesForType) {
+            System.out.println("数据源类型:" + s);
+        }
+    }
+
     @Override
     public String greeting() {
         return "hello " + "\t" + System.currentTimeMillis();
@@ -57,7 +74,7 @@ public class ProviderExampleApplication implements HelloController {
 
     @Override
     public List<Book> getBookByAuthor(String author) {
-        return bookMapper.getBookByAuthor(author);
+        return bookMapper.selectList(new QueryWrapper<Book>().eq("author", author));
     }
 
     @Override
@@ -65,7 +82,6 @@ public class ProviderExampleApplication implements HelloController {
         System.out.println("AAA:==>" + JSONObject.toJSONString(user));
         return "right";
     }
-
 
     @Resource
     private BookMapper bookMapper;
