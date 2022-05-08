@@ -1,12 +1,14 @@
 spring:
   cloud:
-    consul:
-      enabled: true
-      host: localhost
-      port: 8500
+    nacos:
       discovery:
-        register: false
-        health-check-interval: 10s # consul 健康检查频率
+        register-enabled: true
+        heart-beat-interval: 5000
+        heart-beat-timeout: 5000
+        server-addr: 127.0.0.1:8848
+        group: Base
+        namespace: test
+        enabled: true
     gateway:
       discovery:
         locator:

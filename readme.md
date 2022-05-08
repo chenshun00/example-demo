@@ -1,10 +1,12 @@
 ## demo project for SpringCloud
 
+please install `docker` before start this.
+
 ### install DB
-* install docker
 * docker pull chenshun00/mysqlutf8:0.0.1
   * more information @see mysql:5.7
 * start docker
+* execute below script
 
 ```mysql
 create database test;
@@ -23,8 +25,13 @@ VALUES
   (2, 'cc', '2022-04-27 03:37:29', 'second book');
 ```
 
+### install nacos
+* docker pull nacos/nacos-server:1.4.2
+* docker run --name nacos-quick -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:1.4.2
+  * more information @see [nacos/nacos-server](https://hub.docker.com/r/nacos/nacos-server)
+
 ### spring-datasource-boot-starter
-* find starter from [datasource-starter](!https://github.com/chenshun00/datasource-starter)
+* find starter from [datasource-starter](https://github.com/chenshun00/datasource-starter)
 
 ```shell
 cd path
@@ -32,8 +39,7 @@ git clone https://github.com/chenshun00/datasource-starter.git
 cd datasource-starter && mvn install
 ```
 
-### install nacos
-@see https://nacos.io/zh-cn/docs/quick-start.html
+
 
 ### operation
 ```shell
@@ -57,7 +63,7 @@ curl 'http://127.0.0.1:9082/feign'
 * etc.
 
 ### document
-* [feign](!https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-matrixvariable-support)
+* [feign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-matrixvariable-support)
 
 ### why switch consul to naocs
 * because of company technology stack , I had to switch registries from consul to nacos.
@@ -68,4 +74,4 @@ curl 'http://127.0.0.1:9082/feign'
 * https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html#_consumer_%E5%BA%94%E7%94%A8
 * https://www.skypyb.com/2021/06/jishu/1836/
 * https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html#_%E4%BB%8B%E7%BB%8D
-* [can't find nacos-provder,see here how to fix problem](!https://github.com/alibaba/nacos/issues/2568)
+* [can't find nacos-provder,see here how to fix problem](https://github.com/alibaba/nacos/issues/2568)
