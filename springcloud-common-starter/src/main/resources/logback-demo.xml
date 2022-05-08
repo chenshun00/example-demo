@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds">
 
-    <property name="pattern-color" value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
+    <property name="pattern-color"
+              value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
 
     <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n"/>
 
@@ -98,9 +99,9 @@
         </filter>
     </appender>
     <logger name="org.springframework" additivity="false">
-        <level value="ERROR" />
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="errorAppender" />
+        <level value="ERROR"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="errorAppender"/>
     </logger>
 
     <!-- 由于启动的时候，以下两个包下打印debug级别日志很多 ，所以调到ERROR-->
@@ -110,19 +111,16 @@
         <appender-ref ref="errorAppender"/>
     </logger>
 
+    <logger name="com.alibaba.nacos.client.naming" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
     <!-- 默认spring boot导入hibernate很多的依赖包，启动的时候，会有hibernate相关的内容，直接去除 -->
     <logger name="org.hibernate.validator" additivity="false">
         <level value="ERROR"/>
         <appender-ref ref="errorAppender"/>
     </logger>
-
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="infoAppender"/>
-        <appender-ref ref="debugAppender"/>
-        <appender-ref ref="warnAppender"/>
-        <appender-ref ref="errorAppender"/>
-    </root>
 
     <springProfile name="dev">
         <root level="INFO">
