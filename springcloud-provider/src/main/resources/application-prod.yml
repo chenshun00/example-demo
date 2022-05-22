@@ -1,0 +1,54 @@
+spring:
+  datasource:
+    dynamic:
+      allowed-public-only: true
+      strict: true
+      primary: first
+      datasource:
+        first:
+          driverClassName: com.mysql.jdbc.Driver
+          type: com.zaxxer.hikari.HikariDataSource
+          url: jdbc:mysql://localhost:3306/test
+          username: root
+          password: chenshun
+  shardingsphere:
+    mode:
+      type: Memory
+    props:
+      sql-show: true
+    datasource:
+      names: ds0, ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/test1
+        username: root
+        password: chenshun
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/test2
+        username: root
+        password: chenshun
+    rules:
+      sharding:
+        tables:
+          t_topic:
+            actualDataNodes: ds${0..1}.t_topic_${0..2}
+            tableStrategy:
+              standard:
+                shardingColumn: id
+                shardingAlgorithmName: table-inline
+        default-database-strategy:
+          standard:
+            sharding-column: id
+            sharding-algorithm-name: id-inline-database-strategy
+        sharding-algorithms:
+          id-inline-database-strategy:
+            type: INLINE
+            props:
+              algorithm-expression: ds$->{id % 2}
+          table-inline:
+            type: INLINE
+            props:
+              algorithm-expression: t_topic_$->{id % 3}

@@ -1,4 +1,6 @@
 spring:
+  aa: hhh
+  bb: hhh
   profiles:
     active: prod
   application:
@@ -22,3 +24,5 @@ spring:
         username: nacos
         password: nacos
         group: Base
+    config:
+      override-none: true

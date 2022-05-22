@@ -2,7 +2,6 @@ package io.github.chenshun00.springcloud.provider;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
@@ -16,14 +15,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -42,31 +38,25 @@ public class ProviderExampleApplication implements HelloController {
     }
 
 
-    @Value("${fname.fchen}")
+    @Value("${spring.bb}")
     private String hello;
 
     @RequestMapping("/")
     public String home() {
         System.out.println("hello==>" + hello);
-        return "Hello world";
+        return hello;
+    }
+
+    @RequestMapping("one")
+    public Object count(){
+        final Long aLong = bookMapper.selectCount(new QueryWrapper<Book>().eq("author", "cc"));
+        return aLong;
     }
 
     @RequestMapping("/echo/{name}")
     public String echo(@PathVariable String name) {
         System.out.println("hello==>" + name);
         return "echo name = " + name;
-    }
-
-    @Resource
-    private ApplicationContext applicationContext;
-
-    @GetMapping("dd")
-    public void dd() {
-        final String[] beanNamesForType = applicationContext.getBeanNamesForType(DataSource.class);
-        System.out.println("===开始输出");
-        for (String s : beanNamesForType) {
-            System.out.println("数据源类型:" + s);
-        }
     }
 
     @Override
