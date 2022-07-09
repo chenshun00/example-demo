@@ -32,6 +32,7 @@ spring:
         password: chenshun
     rules:
       sharding:
+        default-sharding-column: id
         tables:
           t_topic:
             actualDataNodes: ds${0..1}.t_topic_${0..2}

@@ -48,7 +48,7 @@ public class ProviderExampleApplication implements HelloController {
     }
 
     @RequestMapping("one")
-    public Object count(){
+    public Object count() {
         final Long aLong = bookMapper.selectCount(new QueryWrapper<Book>().eq("author", "cc"));
         return aLong;
     }
