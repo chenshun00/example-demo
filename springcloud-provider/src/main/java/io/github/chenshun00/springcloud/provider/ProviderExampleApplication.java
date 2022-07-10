@@ -7,6 +7,7 @@ import io.github.chenshun00.springcloud.api.Book;
 import io.github.chenshun00.springcloud.api.HelloController;
 import io.github.chenshun00.springcloud.dto.User;
 import io.github.chenshun00.springcloud.provider.mapper.BookMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +16,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,8 +53,11 @@ public class ProviderExampleApplication implements HelloController {
         return aLong;
     }
 
-    @RequestMapping("/echo/{name}")
-    public String echo(@PathVariable String name) {
+    @RequestMapping("/echo")
+    public String echo(String name) throws Throwable {
+        if (StringUtils.isBlank(name)) {
+            throw new Throwable("name is empty");
+        }
         System.out.println("hello==>" + name);
         return "echo name = " + name;
     }

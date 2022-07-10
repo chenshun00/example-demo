@@ -19,7 +19,7 @@ spring:
         group: Base
 
       config:
-        server-addr: 192.168.251.2:8848
+        server-addr: 127.0.0.1:8848
         file-extension: yaml
         namespace: test
         username: nacos

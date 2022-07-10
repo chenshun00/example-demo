@@ -9,9 +9,56 @@ spring:
         group: Base
         namespace: test
         enabled: true
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: test
+        username: nacos
+        password: nacos
+        name: gateway.yml
+        group: Base
     gateway:
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 30s
+        pool:
+          type: FIXED
+          max-idle-time: 20s
+          max-connections: 100000
+          acquire-timeout: 2000
+#      routes:
+#        - id: nacos-provider
+#          uri: lb://nacos-provider
+#          predicates:
+#            - Path=/nacos-provider/**
+#          filters:
+#            - StripPrefix=1
+#            - name: Retry
+#              args:
+#                routeId: nacos-provider
+#                retries: 3
+#                series:
+#                  - SERVER_ERROR
+#                statuses:
+#                  - OK
+#                methods:
+#                  - GET
+#                  - POST
   application:
     name: gateway
+debug: false
+logging:
+  level:
+    com:
+      alibaba:
+        nacos: warn
+    sun:
+      net:
+        www:
+          protocol:
+            http:
+              HttpURLConnection: warn

@@ -1,10 +1,5 @@
 package io.github.chenshun00.springcloud.provider.config;
 
-/**
- * @author chenshun00@gmail.com
- * @since 2022/5/22 2:40 PM
- */
-
 import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
 import com.baomidou.dynamic.datasource.provider.AbstractDataSourceProvider;
 import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
