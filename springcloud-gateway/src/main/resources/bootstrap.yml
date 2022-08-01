@@ -62,3 +62,8 @@ logging:
           protocol:
             http:
               HttpURLConnection: warn
+io:
+  aa:
+    cc: c
+    dd: d
+    ee: e

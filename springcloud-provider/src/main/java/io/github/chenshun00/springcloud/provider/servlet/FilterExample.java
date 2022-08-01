@@ -1,5 +1,7 @@
 package io.github.chenshun00.springcloud.provider.servlet;
 
+import io.github.chenshun00.springcloud.provider.util.TraceUtil;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
@@ -15,6 +17,11 @@ public class FilterExample implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        filterChain.doFilter(servletRequest, servletResponse);
+        try {
+            TraceUtil.get();
+            filterChain.doFilter(servletRequest, servletResponse);
+        } finally {
+            TraceUtil.clear();
+        }
     }
 }

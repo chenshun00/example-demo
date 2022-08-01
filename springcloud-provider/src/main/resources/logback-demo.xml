@@ -9,9 +9,9 @@
 
     <!-- 控制台设置 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>io.github.chenshun00.springcloud.provider.util.FF</pattern>
-        </encoder>
+        <layout class="io.github.chenshun00.springcloud.provider.util.FF">
+            <Pattern>%msg%n</Pattern>
+        </layout>
     </appender>
     <!-- INFO -->
     <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -139,6 +139,7 @@
 
     <springProfile name="prod">
         <root level="INFO">
+            <appender-ref ref="STDOUT"/>
             <appender-ref ref="errorAppender"/>
             <appender-ref ref="warnAppender"/>
             <appender-ref ref="infoAppender"/>
