@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
  * @author chenshun00@gmail.com
  * @since 2022/8/1 11:05 PM
  */
+@CanConvert("copy")
 public class Convert extends AbstractReqConvert<Copy.User> {
 
     @Override
