@@ -1,5 +1,7 @@
 package io.github.chenshun00.springcloud.provider.test;
 
+import org.springframework.stereotype.Component;
+
 import java.lang.annotation.*;
 
 /**
@@ -9,8 +11,9 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
+@Component
 public @interface CanConvert {
 
-    String value();
+    String value() default "";
 
 }
