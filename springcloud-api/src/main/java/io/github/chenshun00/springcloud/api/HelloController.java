@@ -4,6 +4,7 @@ import io.github.chenshun00.springcloud.dto.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author chenshun00@gmail.com
  * @since 2022/4/26 9:28 PM
  */
-@FeignClient(value = "nacos-provider",contextId = "helloController")
+@FeignClient(value = "nacos-provider", contextId = "helloController")
 public interface HelloController {
 
     @GetMapping("/greeting")

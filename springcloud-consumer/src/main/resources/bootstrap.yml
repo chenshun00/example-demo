@@ -22,4 +22,5 @@ spring:
         namespace: test
         username: nacos
         password: nacos
-        group: Base
+        group: DEFAULT_GROUP
+        name: nacos-consumer.yml

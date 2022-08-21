@@ -19,6 +19,7 @@ import java.util.Date;
 @TableName("book")
 public class Book implements Serializable {
 
+
     @TableId(type = IdType.AUTO)
     private Integer id;
 
@@ -30,4 +31,11 @@ public class Book implements Serializable {
     private Date publishDate;
 
     private String name;
+
+    public static Book of() {
+        final Book book = new Book();
+        book.setId(1);
+        book.setName("book_name");
+        return book;
+    }
 }
