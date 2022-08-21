@@ -1,6 +1,6 @@
 package io.github.chenshun00.springcloud.provider.test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * @author chenshun00@gmail.com
@@ -10,6 +10,6 @@ public abstract class AbstractReqConvert<T> {
 
     public abstract Class<T> type();
 
-    public abstract JSONObject convert(JSONObject root);
+    public abstract JsonNode convert(JsonNode root);
 
 }

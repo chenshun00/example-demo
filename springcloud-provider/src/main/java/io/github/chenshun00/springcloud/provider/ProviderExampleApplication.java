@@ -1,6 +1,5 @@
 package io.github.chenshun00.springcloud.provider;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.chenshun00.springcloud.api.Book;
@@ -18,6 +17,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.olegcherednik.jackson.utils.JacksonUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -71,13 +71,13 @@ public class ProviderExampleApplication implements HelloController {
     public List<Book> getBookByAuthor(String author) {
         final Page<Book> objectPage = new Page<>(2, 1, false);
         final Page<Book> books = bookMapper.selectPage(objectPage, new QueryWrapper<Book>().eq("author", author));
-        System.out.println(JSONObject.toJSONString(books));
+        System.out.println(JacksonUtils.writeValue(books));
         return books.getRecords();
     }
 
     @Override
     public String user(User user) {
-        System.out.println("AAA:==>" + JSONObject.toJSONString(user));
+        System.out.println("AAA:==>" + JacksonUtils.writeValue(user));
         return "right";
     }
 

@@ -2,7 +2,7 @@ package io.github.chenshun00.springcloud.provider.test;
 
 import cn.hutool.core.lang.ClassScanner;
 import cn.hutool.core.util.ReflectUtil;
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -38,7 +38,7 @@ public class ConvertHandler {
         }
     }
 
-    public JSONObject handle(String clazz, JSONObject root) {
+    public JsonNode handle(String clazz, JsonNode root) {
         final AbstractReqConvert<?> convert = convertMap.get(clazz);
         Assert.notNull(convert, "转换工具不能为空");
         return convert.convert(root);

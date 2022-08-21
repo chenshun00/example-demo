@@ -20,10 +20,11 @@ spring:
 
       config:
         server-addr: 127.0.0.1:8848
-        file-extension: yaml
+        file-extension: yml
+        name: nacos-provider.yml
         namespace: test
         username: nacos
         password: nacos
-        group: Base
+        group: DEFAULT_GROUP
     config:
       override-none: true
