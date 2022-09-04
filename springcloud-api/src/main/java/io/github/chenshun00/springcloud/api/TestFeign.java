@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author chenshun00@gmail.com
  * @since 2022/8/21 10:16 PM
  */
-@FeignClient(value = "nacos-provider", contextId = "testFeign")
+@FeignClient(value = "nacos-provider", contextId = "testFeign", fallback = TestFailBack.class)
 public interface TestFeign {
     @PostMapping("/timeout/three")
     Book pr();

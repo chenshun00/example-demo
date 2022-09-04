@@ -2,6 +2,7 @@ package io.github.chenshun00.springcloud.provider.util;
 
 import lombok.NonNull;
 import lombok.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 
 import java.util.UUID;
 
@@ -12,5 +13,6 @@ import java.util.UUID;
 @Value
 public class BeanTest {
     @NonNull
+            @LoadBalanced
     UUID bookId;
 }

@@ -6,8 +6,6 @@ import feign.Util;
 import feign.codec.ErrorDecoder;
 import io.github.chenshun00.springcloud.api.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import ru.olegcherednik.jackson.utils.JacksonUtilsHelper;
 
 import java.io.IOException;
@@ -17,9 +15,9 @@ import java.nio.charset.StandardCharsets;
  * @author chenshun00@gmail.com
  * @since 2022/4/27 10:32 AM
  */
-@Configuration
+//@Configuration
 public class KeepErrMsgConfiguration {
-    @Bean
+//    @Bean
     public ErrorDecoder errorDecoder() {
         return new UserErrorDecoder();
     }
