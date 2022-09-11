@@ -2,6 +2,7 @@ package io.github.chenshun00.springcloud.provider.util;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import io.github.chenshun00.springcloud.TraceUtil;
 
 /**
  * @author chenshun00@gmail.com

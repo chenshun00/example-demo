@@ -1,7 +1,8 @@
-package io.github.chenshun00.springcloud.provider.util;
+package io.github.chenshun00.springcloud;
 
 import cn.hutool.core.lang.UUID;
 import com.alibaba.ttl.TransmittableThreadLocal;
+import lombok.NonNull;
 
 /**
  * @author chenshun00@gmail.com
@@ -12,7 +13,6 @@ public class TraceUtil {
     private final static TransmittableThreadLocal<String> TRACE = new TransmittableThreadLocal<>();
 
     public static String get() {
-
         String traceId = TRACE.get();
         if (traceId == null) {
             traceId = UUID.randomUUID().toString(true);
@@ -25,11 +25,8 @@ public class TraceUtil {
         TRACE.remove();
     }
 
-
-
-
-    public static void init() {
-        TRACE.set(UUID.randomUUID().toString(true));
+    public static void init(@NonNull String traceId) {
+        TRACE.set(traceId);
     }
 
 }
